@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        section{
+            background-color: blue;
+            color: white;
+            width: 800px;
+            height: 1000px;
+            font: normal 17pt Arial Black;
+            padding: 20px;
+            border-radius: 20px;
+
+        }
+        input{
+            border-radius: 20px;
+            background-color: rgb(0, 130, 65);
+            color: black;
+            font: normal 12pt arial black;
+            box-shadow: 5px 5px 10px black;
+        }
+        h1{
+            width: 700px;
+            background-color: rgb(255, 8, 0);
+            border-radius: 20px;
+            text-align: center;
+
+        }
+        div{
+            font: normal 10pt arial black;
+            width: 300px;
+            background-color: black;
+            padding: 10px;
+            border-radius: 20px;
+            
+        }
+
+        
+    </style>
+</head>
+<body>
+    <section>
+        <h1>CALCULADORA DE HOLERITE</h1>
+        Informe seu nome:
+        <p><input type="text" name="" id="fun"></p>
+        Informe seu salário:
+        <p> <input type="number" name="" id="sl"></p>
+        Informe a quantidade de horas extras:
+        <p> <input type="number" name="" id="hx"></p>
+        Informe o valor pago por cada hora extra:
+        <p> <input type="number" name="" id="hxp"></p>
+        Informe o valor depositado do transporte: 
+        <p><input type="number" name="" id="vt"></p>
+        <input type="button" value="Verificar" onclick="verificar()">
+        <p>
+            <div id="res">
+                
+                <p>Tabela desconto INSS:</p>
+                <p>até 1.100,00	            7.5%</p>
+                <p>de 1.100,01 até 2.203,48	9%</p>
+                <p>de 2.203,49 até 3.305,22	12%</p>
+                <p>de 3.305,23 até 6.433,57	14%</p>
+                <p>acima de 6.433,57    	18%</p>
+                <p>desconto de 6% do Vale transporte</p>
+       
+            </div>
+        </p>
+    </section>
+        <script>
+            function verificar(){
+                var n = document.getElementById("fun")
+                var nome = (n.value)
+                var sl = document.getElementById("sl")
+                var hx = document.getElementById("hx")
+                var hxp = document.getElementById("hxp")
+                var vtt = document.getElementById("vt")
+                var r = document.getElementById("res")
+                var sal = Number(sl.value)
+                var quantHox = Number(hx.value)
+                var valhx = Number(hxp.value)
+                var vt = Number(vtt.value)
+                var desVT = vt * 6 / 100   
+                var valhxpago = valhx * quantHox
+                    if(sal <= 1100){
+                        var descInss = sal * 7.5 / 100
+                          
+                    }
+                    else if(sal >= 1101 && sal <= 2203){
+                        var descInss = sal * 9 / 100
+                    }
+                    else if(sal >= 2204 && sal <= 3305){
+                        var descInss = sal * 12 / 100
+                    }
+                    else if(sal >= 3306 && sal <= 6433){
+                        var descInss = sal * 14 / 100
+
+                    } 
+                    else{
+                        var descInss = sal * 18 / 100 
+                    }
+                   
+                    var salDesc = sal - desVT - descInss
+                    var salLiquido = salDesc + valhxpago
+                    r.innerHTML = `O funcionário <strong>${nome}</strong>, tem um salário de <strong>${sal}</strong> R$.`
+                    r.innerHTML += ` Seu salário com os descontos é <strong>${salDesc}</strong> R$ + <strong>${valhxpago}</strong> R$ de hora 
+                    extra, totalizando em <strong>${salLiquido}</strong> R$ de salário liquido!`
+                    r.style.background = "red"
+                    r.style.width = "400px"
+                    r.style.height = "200px"
+                    r.style.font = "normal 15pt Arial Black"
+                    r.style.margin = "auto"
+                    r.style.boxShadow = "5px 5px 15px white"
+                    
+
+            }
+        </script>
+    
+</body>
+</html>
